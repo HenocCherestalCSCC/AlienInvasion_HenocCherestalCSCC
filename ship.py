@@ -33,3 +33,18 @@ class Ship:
     def blitme(self) -> None:
         '''Draw the ship at its current location.'''
         pygame.draw.rect(self.screen, self.settings.ship_color, self.rect)
+
+    def update(self) -> None:
+        '''Update the ship's position based on movement flags.'''
+        if self.moving_right and self.rect.right < self.screen_rect.right:
+            self.x += self.settings.ship_speed
+        if self.moving_left and self.rect.left > 0:
+            self.x -= self.settings.ship_speed
+
+        self.rect.x = int(self.x)
+
+    def center_ship(self) -> None:
+        '''Center the ship on the bottom of the screen.'''
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.rect.y -= 10
+        self.x = float(self.rect.x)
