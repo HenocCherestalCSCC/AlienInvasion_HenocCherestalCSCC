@@ -24,10 +24,10 @@ class Settings:
         self.bullets_allowed = 5
         self.fps = 60
 
-        self.ship_width = 90
-        self.ship_height = 90
-        self.bullet_width = 18
-        self.bullet_height = 42 
+        self.ship_width = 110
+        self.ship_height = 110
+        self.bullet_width = 24
+        self.bullet_height = 60 
 
         self.base_dir = Path(__file__).resolve().parent
         self.assets_dir = self.base_dir / "Assets"
