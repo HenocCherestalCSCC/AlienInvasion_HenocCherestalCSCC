@@ -35,6 +35,7 @@ class AlienInvasion:
         '''Start the main loop for the game.'''
         while True:
             self._check_events()
+            self.ship.update()
             self._update_screen()
             self.clock.tick(self.settings.fps)
 
@@ -44,6 +45,31 @@ class AlienInvasion:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+
+            if event.type == pygame.KEYUP:
+                self._check_keyup_events(event)
+
+                
+    def _check_keydown_events(self, event: pygame.event.Event) -> None:
+        '''Respond to key presses.'''
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+        elif event.key == pygame.K_q:
+            pygame.quit()
+            sys.exit()
+
+    def _check_keyup_events(self, event: pygame.event.Event) -> None:
+        '''Respond to key releases.'''
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = False
+
 
     def _update_screen(self) -> None:
         '''Redraw the screen during each pass through the loop.'''
