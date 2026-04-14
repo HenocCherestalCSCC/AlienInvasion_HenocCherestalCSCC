@@ -7,6 +7,24 @@ Python Crash Course, 3rd Edition by Eric Matthes.
 Date: 04/14/2026
 '''
 
+# Asset & Creative Process Disclosure:
+
+# The visual identity of this project—including the custom ship, laser effects, and environmental backdrops—was developed through an iterative, 
+
+# AI-assisted creative workflow. Rather than using online typical assets, I utilized AI as a foundational tool to explore specific silhouettes 
+# and textures to build custom assets for Track 2.
+
+# My process involved:
+
+# Direction & Iteration: Engineering specific prompts to move beyond generic designs, ensuring a bespoke look for the player ship and weaponry.
+
+# Curation & Selection: Evaluating hundreds of generations to hand-pick assets that maintained a cohesive "visual language" across the game.
+
+# Refinement & Preparation: Manually post-processing and polishing the selected imagery to ensure technical compatibility, proper transparency, 
+# and seamless integration within the game engine.
+
+# The final result represents a deliberate fusion of generative technology and human creative direction, tailored specifically
+# to bring the world I envisioned to life.
 
 import sys
 import pygame
@@ -28,10 +46,21 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height)
         )
         pygame.display.set_caption(self.settings.caption)
-
+        
+        self.background = self._load_background()
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.clock = pygame.time.Clock()
+
+
+    def _load_background(self) -> pygame.Surface:
+        '''Load and scale the background image.'''
+        background = pygame.image.load(self.settings.background_image).convert()
+        background = pygame.transform.scale(
+            background,
+            (self.settings.screen_width, self.settings.screen_height),
+        )
+        return background
 
     def run_game(self) -> None:
         '''Start the main loop for the game.'''
@@ -78,7 +107,7 @@ class AlienInvasion:
 
     def _update_screen(self) -> None:
         '''Redraw the screen during each pass through the loop.'''
-        self.screen.fill(self.settings.bg_color)
+        self.screen.blit(self.background, (0, 0))
         self.ship.blitme()
 
         for bullet in self.bullets.sprites():
