@@ -7,6 +7,7 @@ Python Crash Course, 3rd Edition by Eric Matthes.
 Date: 04/14/2026
 '''
 
+from pathlib import Path
 
 class Settings:
     '''Store all settings for the Alien Invasion game.'''
@@ -23,10 +24,15 @@ class Settings:
         self.bullets_allowed = 5
         self.fps = 60
 
-        self.ship_width = 80
-        self.ship_height = 48
-        self.ship_color = (100, 220, 255)
+        self.ship_width = 90
+        self.ship_height = 90
+        self.bullet_width = 18
+        self.bullet_height = 42 
 
-        self.bullet_width = 6
-        self.bullet_height = 18
-        self.bullet_color = (255, 80, 80)
+        self.base_dir = Path(__file__).resolve().parent
+        self.assets_dir = self.base_dir / "Assets"
+        self.images_dir = self.assets_dir / "images"
+
+        self.ship_image = self.images_dir / "ship.png"
+        self.bullet_image = self.images_dir / "laserBlast.png"
+        self.background_image = self.images_dir / "Starbasesnow.png"
