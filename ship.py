@@ -21,7 +21,13 @@ class Ship:
         self.settings: Settings = ai_game.settings
         self.screen_rect = self.screen.get_rect()
 
-        self.rect = pygame.Rect(0, 0, self.settings.ship_width, self.settings.ship_height)
+        self.image = pygame.image.load(self.settings.ship_image).convert_alpha()
+        self.image = pygame.transform.scale(
+            self.image,
+            (self.settings.ship_width, self.settings.ship_height),
+        )
+        self.rect = self.image.get_rect()
+
         self.rect.midbottom = self.screen_rect.midbottom
         self.rect.y -= 10
 
@@ -32,7 +38,7 @@ class Ship:
 
     def blitme(self) -> None:
         '''Draw the ship at its current location.'''
-        pygame.draw.rect(self.screen, self.settings.ship_color, self.rect)
+        self.screen.blit(self.image, self.rect)
 
     def update(self) -> None:
         '''Update the ship's position based on movement flags.'''
