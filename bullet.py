@@ -23,7 +23,7 @@ class Bullet(Sprite):
         self.settings: Settings = ai_game.settings
 
         self.image = pygame.image.load(self.settings.bullet_image).convert_alpha()
-        self.image = pygame.transform.scale(
+        self.image = pygame.transform.smoothscale(
             self.image,
             (self.settings.bullet_width, self.settings.bullet_height),
         )

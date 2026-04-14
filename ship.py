@@ -22,7 +22,7 @@ class Ship:
         self.screen_rect = self.screen.get_rect()
 
         self.image = pygame.image.load(self.settings.ship_image).convert_alpha()
-        self.image = pygame.transform.scale(
+        self.image = pygame.transform.smoothscale(
             self.image,
             (self.settings.ship_width, self.settings.ship_height),
         )
