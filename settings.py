@@ -29,6 +29,12 @@ class Settings:
         self.bullet_width = 24
         self.bullet_height = 60 
 
+        self.alien_width = 88
+        self.alien_height = 88
+        self.alien_speed = 1.5
+        self.fleet_drop_speed = 18
+        self.fleet_direction = 1
+
         self.base_dir = Path(__file__).resolve().parent
         self.assets_dir = self.base_dir / "Assets"
         self.images_dir = self.assets_dir / "images"
@@ -36,3 +42,4 @@ class Settings:
         self.ship_image = self.images_dir / "ship.png"
         self.bullet_image = self.images_dir / "laserBlast.png"
         self.background_image = self.images_dir / "Starbasesnow.png"
+        self.alien_image = self.images_dir / "alien.png"
