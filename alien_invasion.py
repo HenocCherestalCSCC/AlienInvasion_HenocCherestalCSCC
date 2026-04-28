@@ -133,9 +133,12 @@ class AlienInvasion:
         '''Start the main loop for the game.'''
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+
+            if self.stats.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+
             self._update_screen()
             self.clock.tick(self.settings.fps)
 
@@ -151,6 +154,34 @@ class AlienInvasion:
 
             if event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos) 
+
+    def _check_play_button(self, mouse_pos: tuple[int, int]) -> None:
+        '''Start a new game when the player clicks Play.'''
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+
+        if button_clicked and not self.stats.game_active:
+            self._start_game()
+
+    def _start_game(self) -> None:
+        '''Start a fresh game.'''
+        self.stats.reset_stats()
+        self.stats.game_active = True
+
+        self.sb.prep_score()
+        self.sb.prep_level()
+        self.sb.prep_ships()
+
+        self.bullets.empty()
+        self.aliens.empty()
+        self._create_fleet()
+        self.ship.center_ship()
+
+        pygame.mouse.set_visible(False)
+        self.sound.play_music()               
 
                 
     def _check_keydown_events(self, event: pygame.event.Event) -> None:
@@ -182,8 +213,13 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
 
-        pygame.display.flip()
+        self.sb.show_score()
 
+        if not self.stats.game_active:
+            self.play_button.blitme()
+
+        pygame.display.flip()
+        
     def _fire_bullet(self) -> None:
         '''Create a new bullet and add it to the bullets group.'''
         if len(self.bullets) < self.settings.bullets_allowed:
