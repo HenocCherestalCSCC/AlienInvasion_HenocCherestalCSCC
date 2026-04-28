@@ -29,6 +29,7 @@ Date: 04/14/2026
 import sys
 import pygame
 
+from alien import Alien
 from bullet import Bullet
 from settings import Settings
 from ship import Ship
@@ -50,6 +51,8 @@ class AlienInvasion:
         self.background = self._load_background()
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+        self._create_fleet()
         self.clock = pygame.time.Clock()
 
 
@@ -61,6 +64,57 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height),
         )
         return background
+
+    def _swarm_layout(self) -> list[tuple[int, int]]:
+        '''Return the offsets for the insect-like fleet pattern.'''
+        return [
+            (0, 0),
+            (-1, 1), (1, 1),
+            (-3, 2), (-1, 2), (2, 2),
+            (-4, 3), (-2, 3), (0, 3), (3, 3),
+            (-3, 4), (-1, 4), (2, 4),
+            (-1, 5), (1, 5),
+        ]
+
+    def _create_fleet(self) -> None:
+        '''Create the full alien fleet in a custom swarm pattern.'''
+        alien = Alien(self)
+        alien_width = alien.rect.width
+        alien_height = alien.rect.height
+
+        start_x = self.screen.get_rect().centerx - (alien_width // 2)
+        start_y = 80
+
+        for column_offset, row_offset in self._swarm_layout():
+            self._create_alien(
+                start_x,
+                start_y,
+                column_offset,
+                row_offset,
+                alien_width,
+                alien_height,
+            )
+
+    def _create_alien(
+        self,
+        start_x: int,
+        start_y: int,
+        column_offset: int,
+        row_offset: int,
+        alien_width: int,
+        alien_height: int,
+    ) -> None:
+        '''Create a single alien and place it in the fleet.'''
+        alien = Alien(self)
+
+        x_spacing = alien_width - 8
+        y_spacing = alien_height - 14
+
+        alien.rect.x = start_x + (column_offset * x_spacing)
+        alien.rect.y = start_y + (row_offset * y_spacing)
+        alien.x = float(alien.rect.x)
+
+        self.aliens.add(alien)    
 
     def run_game(self) -> None:
         '''Start the main loop for the game.'''
