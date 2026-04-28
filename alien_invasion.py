@@ -35,6 +35,10 @@ from alien import Alien
 from bullet import Bullet
 from settings import Settings
 from ship import Ship
+from sound_manager import SoundManager
+from scoreboard import Scoreboard
+from game_stats import GameStats
+from button import Button
 
 
 class AlienInvasion:
@@ -54,8 +58,14 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
-        self._create_fleet()
         self.clock = pygame.time.Clock()
+
+        self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
+        self.sound = SoundManager(self)
+        self.play_button = Button(self, "PLAY")
+
+        self._create_fleet()
 
 
     def _load_background(self) -> pygame.Surface:
