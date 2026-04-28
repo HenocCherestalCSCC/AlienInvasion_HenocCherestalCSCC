@@ -164,6 +164,7 @@ class AlienInvasion:
         '''Redraw the screen during each pass through the loop.'''
         self.screen.blit(self.background, (0, 0))
         self.ship.blitme()
+        self.aliens.draw(self.screen)
 
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
