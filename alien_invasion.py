@@ -27,6 +27,8 @@ Date: 04/14/2026
 # to bring the world I envisioned to life.
 
 import sys
+from time import sleep
+
 import pygame
 
 from alien import Alien
@@ -200,6 +202,11 @@ class AlienInvasion:
         self._check_fleet_edges()
         self.aliens.update()
 
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self._ship_hit()
+
+        self._check_aliens_bottom()
+
     def _check_fleet_edges(self) -> None:
         '''Respond appropriately if any aliens have reached an edge.'''
         for alien in self.aliens.sprites():
@@ -213,6 +220,25 @@ class AlienInvasion:
             alien.rect.y += self.settings.fleet_drop_speed
 
         self.settings.fleet_direction *= -1
+
+    def _ship_hit(self) -> None:
+        '''Respond to the ship being hit by an alien.'''
+        self.aliens.empty()
+        self.bullets.empty()
+
+        self._create_fleet()
+        self.ship.center_ship()
+
+        sleep(0.5)
+
+    def _check_aliens_bottom(self) -> None:
+        '''Check whether any aliens have reached the bottom of the screen.'''
+        screen_rect = self.screen.get_rect()
+
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                self._ship_hit()
+                break    
 
 if __name__ == "__main__":
     ai = AlienInvasion()
