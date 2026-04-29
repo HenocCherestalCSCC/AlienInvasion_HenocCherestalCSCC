@@ -190,8 +190,10 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
-        elif event.key == pygame.K_SPACE:
+        elif event.key == pygame.K_SPACE and self.stats.game_active:
             self._fire_bullet()
+        elif event.key == pygame.K_p and not self.stats.game_active:
+            self._start_game()
         elif event.key == pygame.K_q:
             pygame.quit()
             sys.exit()
@@ -219,7 +221,7 @@ class AlienInvasion:
             self.play_button.blitme()
 
         pygame.display.flip()
-        
+
     def _fire_bullet(self) -> None:
         '''Create a new bullet and add it to the bullets group.'''
         if len(self.bullets) < self.settings.bullets_allowed:
