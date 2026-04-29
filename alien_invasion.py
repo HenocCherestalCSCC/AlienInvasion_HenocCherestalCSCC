@@ -240,11 +240,27 @@ class AlienInvasion:
 
     def _check_bullet_alien_collisions(self) -> None:
         '''Respond to bullet and alien collisions.'''
-        pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        collisions = pygame.sprite.groupcollide(
+            self.bullets,
+            self.aliens,
+            True,
+            True,
+        )
+
+        if collisions:
+            self.sound.play_impact()
+
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+
+            self.sb.prep_score()
 
         if not self.aliens:
             self.bullets.empty()
-            self._create_fleet()    
+            self.stats.level += 1
+            self.sb.prep_level()
+            self._create_fleet()
+
 
     def _update_aliens(self) -> None:
         '''Update the positions of all aliens in the fleet.'''
