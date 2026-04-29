@@ -24,7 +24,51 @@ Date: 04/14/2026
 # and seamless integration within the game engine.
 
 # The final result represents a deliberate fusion of generative technology and human creative direction, tailored specifically
-# to bring the world I envisioned to life.
+# to bring the world I envisioned to life. 
+
+
+'''
+Asset Attribution:
+Ship Image: ship.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/ship.png
+
+Laser Image: laserBlast.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/laserBlast.png
+
+Background Image: Starbasesnow.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/Starbasesnow.png
+
+Alien Image: alien.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/alien.png
+
+Play Button Image: playButton.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/playButton.png
+
+Background Music: backgroundMusic.mp3
+Author: Musinova
+Source/Link: https://pixabay.com/users/musinova-47643763/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=444655
+
+Laser Sound Layer 1: Leaves Rustle 03
+Author: TanwerAman
+Source/Link: Pixabay
+
+Laser Sound Layer 2: Sci Fi Gun Shot
+Author: SoundReality
+Source/Link: Pixabay
+
+Impact Sound: impactSound.mp3
+Author: floraphonic
+Source/Link: Pixabay
+
+Font: Macondo and Macondo Swash Caps
+Author: John Vargas Beltrán
+Source/Link: Google Fonts
+'''
 
 import sys
 from time import sleep
