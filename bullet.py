@@ -5,6 +5,17 @@ Purpose: Define the Bullet class for the Alien Invasion game.
 Starter Code: Based on the Alien Invasion project from class and
 Python Crash Course, 3rd Edition by Eric Matthes.
 Date: 04/14/2026
+
+Asset Attribution:
+Laser Image: laserBlast.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/laserBlast.png
+
+Laser Sound Layers:
+Leaves Rustle 03 by TanwerAman
+Sci Fi Gun Shot by SoundReality
+Source/Link: Pixabay
+
 '''
 
 import pygame

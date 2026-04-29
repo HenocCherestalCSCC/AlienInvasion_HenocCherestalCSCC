@@ -5,6 +5,12 @@ Purpose: Define the Alien class for the Alien Invasion game.
 Starter Code: Based on the Alien Invasion project from class and
 Python Crash Course, 3rd Edition by Eric Matthes.
 Date: 04/27/2026
+
+Asset Attribution:
+Alien Image: alien.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/alien.png
+
 '''
 
 import pygame

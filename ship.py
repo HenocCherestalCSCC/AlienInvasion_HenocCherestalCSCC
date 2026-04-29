@@ -5,6 +5,13 @@ Purpose: Define the Ship class for the Alien Invasion game.
 Starter Code: Based on the Alien Invasion project from class and
 Python Crash Course, 3rd Edition by Eric Matthes.
 Date: 04/14/2026
+
+
+Asset Attribution:
+Ship Image: ship.png
+Author: Henoc Cherestal using AI-assisted image generation.
+Source/Link: Local project asset at Assets/images/ship.png
+
 '''
 
 import pygame
